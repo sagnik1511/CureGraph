@@ -1,6 +1,9 @@
 from sklearn.metrics import (accuracy_score, confusion_matrix,
                              precision_score, f1_score, recall_score, roc_auc_score)
 
+
+
+
 def calculate_scores(y_true, y_pred, dataset="training"):
     acc = accuracy_score(y_true, y_pred)
     print(f"Accuracy Score : {round(acc, 4)}")
@@ -21,6 +24,4 @@ def calculate_scores(y_true, y_pred, dataset="training"):
         f"{dataset}_f1_score": f1s,
         f"{dataset}_roc_auc_score": ras
     }
-
-
 
