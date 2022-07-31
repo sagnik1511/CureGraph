@@ -1,0 +1,20 @@
+# cache files
+__pycache__
+
+# raw data
+data/raw/*csv
+
+# processed data
+data/processed/*pt
+
+# extra datasets
+sample_datasets/
+
+# notebook checkpoints
+notebooks/.ipynb_checkpoints/
+
+# testing files
+test.py
+
+# mlflow runs
+mlruns/
