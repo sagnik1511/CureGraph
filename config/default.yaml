@@ -16,6 +16,6 @@ optimizer:
     momentum: NA
 training:
     loss_fn: "bce"
-    num_epochs: 5
+    max_epochs: 100
     early_stop_count: 5
     gpu_node: "0"

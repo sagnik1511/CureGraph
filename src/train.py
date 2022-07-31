@@ -35,6 +35,8 @@ def train_single_epoch(loader, model, optim, loss_fn, epoch, device):
     print(f"Training Loss : {final_loss}")
     mlflow.log_metric("training_loss", final_loss, step=epoch+1)
 
+    return model, optim
+
 def test_single_epoch(loader, model, loss_fn, epoch, device):
     epoch_loss = 0.0
     true_labels = []
@@ -54,7 +56,7 @@ def test_single_epoch(loader, model, loss_fn, epoch, device):
     final_loss = round(epoch_loss / (index+1), 6)
     print(f"Testing Loss : {final_loss}")
     mlflow.log_metric("testing_loss", final_loss, step=epoch+1)
-    return final_loss
+    return model, final_loss
 
 def train(params):
     print("Process Initiated...")
@@ -95,7 +97,7 @@ def train(params):
             raise NotImplementedError
 
         best_loss = torch.inf
-        num_epochs = params["training"]["num_epochs"]
+        num_epochs = params["training"]["max_epochs"]
         early_stop_counter = 0
 
         for epoch in range(num_epochs):
@@ -105,9 +107,10 @@ def train(params):
             else:
                 print(f"Epoch {epoch + 1}: ")
                 model.train()
-                train_single_epoch(train_loader, model,
+                model, optimizer = train_single_epoch(train_loader, model,
                                                  optimizer, loss_fn, epoch+1, device)
-                current_loss = test_single_epoch(test_loader, model, loss_fn, epoch+1, device)
+                model.eval()
+                model, current_loss = test_single_epoch(test_loader, model, loss_fn, epoch+1, device)
                 if current_loss < best_loss:
                     best_loss = current_loss
                     mlflow.pytorch.log_state_dict(model.state_dict(), artifact_path="gann_best_weights")
@@ -116,6 +119,7 @@ def train(params):
                 else:
                     early_stop_counter += 1
                 print("\n")
+        mlflow.log_param("num_epochs", epoch)
     mlflow.end_run()
     print("Process Finished...")
 
