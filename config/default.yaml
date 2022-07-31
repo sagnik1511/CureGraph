@@ -1,9 +1,9 @@
 dataset:
     root: "data/"
-    batch_size: 64
+    batch_size: 128
 model:
     model_embedding_size: 64
-    model_attention_heads: 3
+    model_attention_heads: 2
     model_layers: 4
     model_dropout_rate: 0.2
     model_top_k_ratio: 0.5
@@ -17,5 +17,5 @@ optimizer:
 training:
     loss_fn: "bce"
     max_epochs: 100
-    early_stop_count: 5
+    early_stop_count: 10
     gpu_node: "0"

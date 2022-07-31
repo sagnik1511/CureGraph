@@ -12,7 +12,7 @@ from torch_geometric.data import DataLoader
 import warnings
 warnings.filterwarnings("ignore")
 
-def train_single_epoch(loader, model, optim, loss_fn, epoch, device):
+def train_single_epoch(loader, model, optim, loss_fn, device):
     epoch_loss = 0.0
     true_labels = []
     pred_labels = []
@@ -30,14 +30,14 @@ def train_single_epoch(loader, model, optim, loss_fn, epoch, device):
         epoch_loss += loss.item()
         true_labels += batch.y.cpu().detach().numpy().tolist()
         pred_labels += np.rint(op.cpu().detach().numpy()).tolist()
-    calculate_scores(true_labels, pred_labels, epoch, "training")
+    scores = calculate_scores(true_labels, pred_labels, "training")
     final_loss = round(epoch_loss / (index+1), 6)
     print(f"Training Loss : {final_loss}")
-    mlflow.log_metric("training_loss", final_loss, step=epoch+1)
+    scores["training_loss"] = final_loss
 
-    return model, optim
+    return model, optim, scores
 
-def test_single_epoch(loader, model, loss_fn, epoch, device):
+def test_single_epoch(loader, model, loss_fn, device):
     epoch_loss = 0.0
     true_labels = []
     pred_labels = []
@@ -52,11 +52,11 @@ def test_single_epoch(loader, model, loss_fn, epoch, device):
         epoch_loss += loss.item()
         true_labels += batch.y.cpu().detach().numpy().tolist()
         pred_labels += np.rint(op.cpu().detach().numpy()).tolist()
-    calculate_scores(true_labels, pred_labels, epoch, "testing")
+    scores = calculate_scores(true_labels, pred_labels, "testing")
     final_loss = round(epoch_loss / (index+1), 6)
     print(f"Testing Loss : {final_loss}")
-    mlflow.log_metric("testing_loss", final_loss, step=epoch+1)
-    return model, final_loss
+    scores["testing_loss"] = final_loss
+    return model, final_loss, scores
 
 def train(params):
     print("Process Initiated...")
@@ -107,13 +107,15 @@ def train(params):
             else:
                 print(f"Epoch {epoch + 1}: ")
                 model.train()
-                model, optimizer = train_single_epoch(train_loader, model,
-                                                 optimizer, loss_fn, epoch+1, device)
+                model, optimizer, train_scores = train_single_epoch(train_loader, model,
+                                                 optimizer, loss_fn, device)
                 model.eval()
-                model, current_loss = test_single_epoch(test_loader, model, loss_fn, epoch+1, device)
+                model, current_loss, test_scores = test_single_epoch(test_loader, model, loss_fn, device)
                 if current_loss < best_loss:
                     best_loss = current_loss
-                    mlflow.pytorch.log_state_dict(model.state_dict(), artifact_path="gann_best_weights")
+                    mlflow.log_metrics(train_scores)
+                    mlflow.log_metrics(test_scores)
+                    mlflow.pytorch.log_model(model, artifact_path="gann_best_model")
                     early_stop_counter = 0
                     print("Model Weights Updated...")
                 else:
@@ -129,4 +131,5 @@ if __name__ == '__main__':
     with open(config_path, "r") as f:
         params = yaml.safe_load(f)
         f.close()
+    print(params)
     train(params)
