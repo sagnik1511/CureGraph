@@ -5,7 +5,7 @@
 <img src="https://forthebadge.com/images/badges/built-with-love.svg">
 <img src="https://forthebadge.com/images/badges/made-with-python.svg">
 <img src="https://forthebadge.com/images/badges/built-with-science.svg"><br>
-<img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/gnn.svg">
+<img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/gnn.svg"><br>
 <img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/pt.svg">
 <img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/st.svg">
 </div>
