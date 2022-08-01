@@ -5,9 +5,9 @@
 <img src="https://forthebadge.com/images/badges/built-with-love.svg">
 <img src="https://forthebadge.com/images/badges/made-with-python.svg">
 <img src="https://forthebadge.com/images/badges/built-with-science.svg"><br>
-<img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/gnn.svg>
-<img src='https://github.com/sagnik1511/CureGraph/blob/main/assets/pt.svg'>
-<img src='https://github.com/sagnik1511/CureGraph/blob/main/assets/st.svg'>
+<img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/gnn.svg">
+<img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/pt.svg">
+<img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/st.svg">
 </div>
 
 
@@ -35,7 +35,7 @@ Version details are shared below.
     
         torch==1.12.0+cu116
         torchvision==0.13.0+cu116
-5. Install PyG (PyTorch Geometric to prepare graph datasets). Follow this link : [pytorch-geometric.readthedocs.io/en/latest/notes/installation.html](https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html)
+5. Install PyG (PyTorch Geometric to prepare graph datasets). Follow this link : [pytorch-geometric.readthedocs.io/](https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html)
 6. Clone the repository. Run this command on terminal
 
         git clone https://github.com/sagnik1511/CureGraph.git
@@ -74,7 +74,8 @@ training:
     gpu_node: "0"
 ````
 You can add your new configuration by mimicing this format. Just make sure the file is a `yaml` file and it is stored inside `config` directory.
-    b) Run the training scripts as a module.
+
+b) Run the training scripts as a module.
 
     python -m src.train
 
@@ -87,7 +88,7 @@ c) Fire mlflow server and track model training jobs using this command.
 ## Module Functionalities Achieved
 
 - [x] Effective Web-platform UI.
-- [x] Training through CPU / GPU / TPU.
+- [x] Training through CPU / GPU.
 - [x] Basic Loggings & Reports.
 - [x] MLFlow Integration.
 - [ ] Endpoint Service.
