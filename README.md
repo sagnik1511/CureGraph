@@ -3,7 +3,7 @@
 <h3>HIV Inhibition Detector using GraphNN</h3>
 <img width="600px" src="https://github.com/sagnik1511/CureGraph/blob/main/assets/banner.png"><br>
 <img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/love.svg">
-<img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/love.svg">
+<img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/python.svg">
 <img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/sci.svg"><br>
 <img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/gnn.svg"><br>
 <img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/pt.svg">
