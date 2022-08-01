@@ -20,10 +20,10 @@
 
 <h2>Features of the Project</h2>
 <i>1. Working with Graph Attention Neural Networks.</i><br>
-<i>2. Easily intefies molecules expected behaviour to HIV disease.</i><br>
-<i>3. Get hands on towards medicinal AI.</i><br>
+<i>2. Easily identifies molecules expected behaviour to HIV disease.</i><br>
+<i>3. Getting hands on towards medicinal AI.</i><br>
 <i>4. Integrated with mlflow to track training results.</i><br>
-<i>5. Using Graph data structures somewhere different than DSA.</i>
+<i>5. Using Graph data structures somewhere different than Competitive Programming.</i>
 
 ## Installation & Usage
 1. Install Python on device. Use this [link](https://www.python.org/downloads/).
