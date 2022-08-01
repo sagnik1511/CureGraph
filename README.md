@@ -2,9 +2,9 @@
 <h1>GraphCure</h1>
 <h3>HIV Inhibition Detector using GraphNN</h3>
 <img width="600px" src="https://github.com/sagnik1511/CureGraph/blob/main/assets/banner.png"><br>
-<img src="https://forthebadge.com/images/badges/built-with-love.svg">
-<img src="https://forthebadge.com/images/badges/made-with-python.svg">
-<img src="https://forthebadge.com/images/badges/built-with-science.svg"><br>
+<img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/love.svg">
+<img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/love.svg">
+<img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/sci.svg"><br>
 <img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/gnn.svg"><br>
 <img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/pt.svg">
 <img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/st.svg">
