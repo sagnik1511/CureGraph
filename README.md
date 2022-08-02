@@ -90,9 +90,10 @@ c) Fire mlflow server and track model training jobs using this command.
 - [x] Effective Web-platform UI.
 - [x] Training through CPU / GPU.
 - [x] Basic Loggings & Reports.
-- [x] MLFlow Integration.
+- [x] MLFlow Integratio
+- [x] W&B Integration.
 - [ ] Endpoint Service.
-- [ ] W&B Integration.
+
 
 <div align = "center">
 <h3>If you get any errors while running the code, please make a PR.</h3>

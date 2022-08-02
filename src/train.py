@@ -1,5 +1,6 @@
 import yaml
 import torch
+import wandb
 import mlflow
 import numpy as np
 from tqdm import tqdm
@@ -11,6 +12,10 @@ from src.utils import calculate_scores
 from torch_geometric.data import DataLoader
 import warnings
 warnings.filterwarnings("ignore")
+
+
+train_step, test_step = 1, 1
+
 
 def train_single_epoch(loader, model, optim, loss_fn, device):
     epoch_loss = 0.0
@@ -100,6 +105,8 @@ def train(params):
         num_epochs = params["training"]["max_epochs"]
         early_stop_counter = 0
 
+        wandb.watch(model, log_freq=10)
+
         for epoch in range(num_epochs):
             if early_stop_counter == params["training"]["early_stop_count"]:
                 print("Iteration Stopper due to Repeatative Degradation...")
@@ -109,8 +116,10 @@ def train(params):
                 model.train()
                 model, optimizer, train_scores = train_single_epoch(train_loader, model,
                                                  optimizer, loss_fn, device)
+                wandb.log(train_scores, step=epoch+1)
                 model.eval()
                 model, current_loss, test_scores = test_single_epoch(test_loader, model, loss_fn, device)
+                wandb.log(test_scores, step=epoch+1)
                 if current_loss < best_loss:
                     best_loss = current_loss
                     mlflow.log_metrics(train_scores)
@@ -132,4 +141,5 @@ if __name__ == '__main__':
         params = yaml.safe_load(f)
         f.close()
     print(params)
+    wandb.init(config=params)
     train(params)
