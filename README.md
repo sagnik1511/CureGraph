@@ -1,5 +1,5 @@
 <div align="center">
-<h1>GraphCure</h1>
+<h1>CureGraph</h1>
 <h3>HIV Inhibition Detector using GraphNN</h3>
 <img width="600px" src="https://github.com/sagnik1511/CureGraph/blob/main/assets/banner.png"><br>
 <img src="https://github.com/sagnik1511/CureGraph/blob/main/assets/love.svg">
